@@ -13,10 +13,13 @@
         border: 2px solid red;
         /* left는 요소가 레이어여야 적용된다. position */
         /* absolute - 절대적인 좌표, relative - 자기 형재 요소의 위치보고 상대적 위치 */
-        position: absolute;
+        position: relative;
         left: 0px;
-        transition: left 0.5s;
+        transition: 1s;
       }
+      /* #box:hover {
+        transform: translate(20px, 50px);
+      } */
     </style>
   </head>
   <body>
@@ -31,10 +34,27 @@
     <div id="box">BOX</div>
     <script>
       var colors = ["blue", "ornage", "pink", "magenta"];
-      const playBtn = document.getElementById("playBtn1");
       const box = document.getElementById("box");
-      playBtn.onclick = function () {
+
+      const playBtn1 = document.getElementById("playBtn1");
+      const playBtn2 = document.getElementById("playBtn2");
+      const playBtn3 = document.getElementById("playBtn3");
+      const playBtn4 = document.getElementById("playBtn4");
+      playBtn1.onclick = function () {
+        box.style.top = "0px";
+        box.style.left = "0px";
+      };
+      playBtn2.onclick = function () {
+        box.style.top = "0px";
         box.style.left = "200px";
+      };
+      playBtn3.onclick = function () {
+        box.style.top = "200px";
+        box.style.left = "200px";
+      };
+      playBtn4.onclick = function () {
+        box.style.top = "200px";
+        box.style.left = "0px";
       };
     </script>
   </body>
