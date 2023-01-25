@@ -14,17 +14,15 @@
         /* left는 요소가 레이어여야 적용된다. position */
         /* absolute - 절대적인 좌표, relative - 자기 형재 요소의 위치보고 상대적 위치 */
         position: relative;
-        left: 0px;
-        transition: 1s;
+        /* left: 0px; */
+        transition-duration: 1s;
+        transition-property: all;
       }
-      /* #box:hover {
-        transform: translate(20px, 50px);
-      } */
     </style>
   </head>
   <body>
     <!-- 배경색 -->
-    <!-- 회전, 사라졌다 머시기 몰라 -->
+    <!-- 회전 -->
     <!-- x, y -->
     <button id="playBtn1">0,0</button>
     <button id="playBtn2">0,200</button>
@@ -33,28 +31,61 @@
 
     <div id="box">BOX</div>
     <script>
-      var colors = ["blue", "ornage", "pink", "magenta"];
+      var colors = ["#ADFF2F", "#32CD32", "#66CDAA", "#008B8B"];
       const box = document.getElementById("box");
-
+      var isRotate = true;
       const playBtn1 = document.getElementById("playBtn1");
       const playBtn2 = document.getElementById("playBtn2");
       const playBtn3 = document.getElementById("playBtn3");
       const playBtn4 = document.getElementById("playBtn4");
+
       playBtn1.onclick = function () {
         box.style.top = "0px";
         box.style.left = "0px";
+        box.style.backgroundColor = colors[0];
+        if (!isRotate) {
+          box.style.transform = "rotate(360deg)";
+          isRotate = !isRotate;
+        } else {
+          box.style.transform = "rotate(0deg)";
+          isRotate = !isRotate;
+        }
       };
       playBtn2.onclick = function () {
         box.style.top = "0px";
         box.style.left = "200px";
+        box.style.backgroundColor = colors[1];
+        if (!isRotate) {
+          box.style.transform = "rotate(360deg)";
+          isRotate = !isRotate;
+        } else {
+          box.style.transform = "rotate(0deg)";
+          isRotate = !isRotate;
+        }
       };
       playBtn3.onclick = function () {
         box.style.top = "200px";
         box.style.left = "200px";
+        box.style.backgroundColor = colors[2];
+        if (!isRotate) {
+          box.style.transform = "rotate(360deg)";
+          isRotate = !isRotate;
+        } else {
+          box.style.transform = "rotate(0deg)";
+          isRotate = !isRotate;
+        }
       };
       playBtn4.onclick = function () {
         box.style.top = "200px";
         box.style.left = "0px";
+        box.style.backgroundColor = colors[3];
+        if (!isRotate) {
+          box.style.transform = "rotate(360deg)";
+          isRotate = !isRotate;
+        } else {
+          box.style.transform = "rotate(0deg)";
+          isRotate = !isRotate;
+        }
       };
     </script>
   </body>
