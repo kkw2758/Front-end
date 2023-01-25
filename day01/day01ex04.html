@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>오징어</li>
+      <li>꼴뚜기</li>
+      <li>대구</li>
+      <li>명태</li>
+      <li>거북이</li>
+    </ul>
+    <script>
+      // 자바 스크립트에는 char 타입이 없다.
+      // 홑따옴표 쌍따옴표 모두 문자열로 사용된다. > 구분을 하지 않는다.
+      const colors = ["red", "blue", "orange", "pink", "green"];
+      const lis = document
+        .getElementsByTagName("ul")[0]
+        .getElementsByTagName("li");
+      console.log(lis);
+      // var과 let의 스코프 단위가 다름
+      // let은 블록 단위
+      for (var i = 0; i < colors.length; i++) {
+        // console.log(lis[i]);
+        // 각각의 li 요소에 colors의 색상을 적용시켜라
+        lis[i].i = i;
+        lis[i].onclick = function (event) {
+          event.target.style.backgroundColor = colors[this.i];
+          console.log(this.i);
+          //   event.target.style.backgroundColor = colors[i];
+          //   this.style.backgroundColor = colors[i];
+        };
+        // lis[i].style.backgroundColor = colors[i];
+        // i번째 요소를 클릭하면 colors[i]의 색상이 적용되게 한다.
+        // 해결 힌트 : 자바스크립트 객체는 캡슐하 안됨
+        // 필요한 속성을 객체에 임의로 추가 가능
+      }
+    </script>
+  </body>
+</html>

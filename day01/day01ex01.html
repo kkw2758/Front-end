@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: orange;
+      }
+      #heading {
+        color: yellow;
+        background-color: green;
+      }
+      .welcome {
+        color: green;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="heading">Hello World..!</h1>
+    <h3 class="welcome">오늘은 1월 25일</h3>
+    <h3>반갑습니다</h3>
+    <!-- body > h3.welcome -->
+    <script>
+      // # id
+      // . class
+      // DOM - Document Object Model (문서 객체 모델)
+      // const h1Tag = document.querySelector("h1");
+      const h1Tag = document.getElementById("heading");
+      console.log(h1Tag);
+      console.dir(h1Tag);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+        border: 2px solid red;
+        /* left는 요소가 레이어여야 적용된다. position */
+        /* absolute - 절대적인 좌표, relative - 자기 형재 요소의 위치보고 상대적 위치 */
+        position: absolute;
+        left: 0px;
+        transition: left 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 배경색 -->
+    <!-- 회전, 사라졌다 머시기 몰라 -->
+    <!-- x, y -->
+    <button id="playBtn1">0,0</button>
+    <button id="playBtn2">0,200</button>
+    <button id="playBtn3">200,200</button>
+    <button id="playBtn4">200,0</button>
+
+    <div id="box">BOX</div>
+    <script>
+      var colors = ["blue", "ornage", "pink", "magenta"];
+      const playBtn = document.getElementById("playBtn1");
+      const box = document.getElementById("box");
+      playBtn.onclick = function () {
+        box.style.left = "200px";
+      };
+    </script>
+  </body>
+</html>
