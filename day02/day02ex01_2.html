@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+        border: 2px solid red;
+        /* left는 요소가 레이어여야 적용된다. position */
+        /* absolute - 절대적인 좌표, relative - 자기 형재 요소의 위치보고 상대적 위치 */
+        position: relative;
+        top: 0px;
+        left: 0px;
+        transition: all 1s cubic-bezier(0.64, 0.01, 0.88, 1.42);
+      }
+      #btnGroup {
+        width: 200px;
+      }
+      /* 컴퓨터는 좌측 상단이 0,0 이된다. */
+      /* 바로 밑 자식 선택자는 꺽쇠 */
+      #btnGroup button {
+        width: 80px;
+        height: 80px;
+        margin: 0px 0px 5px 0px;
+      }
+      button[data-pos-x="200"][data-pos-y="200"] {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 배경색 -->
+    <!-- 회전 -->
+    <!-- x, y -->
+    <div id="btnGroup">
+      <button data-pos-x="0" data-pos-y="0" class="playBtn">좌상</button>
+      <button data-pos-x="200" data-pos-y="0" class="playBtn">우상</button>
+      <button data-pos-x="0" data-pos-y="200" class="playBtn">좌하</button>
+      <button data-pos-x="200" data-pos-y="200" class="playBtn">우하</button>
+    </div>
+
+    <div id="box">BOX</div>
+    <script>
+      var colors = ["#ADFF2F", "#32CD32", "#66CDAA", "#008B8B"];
+      const playBtnArr = document.getElementsByClassName("playBtn");
+      console.log(playBtnArr);
+      const box = document.getElementById("box");
+
+      for (var cnt = 0; cnt < playBtnArr.length; cnt++) {
+        playBtnArr[cnt].color = colors[cnt];
+        playBtnArr[cnt].onclick = function (event) {
+          box.style.left = this.dataset.posX + "px";
+          box.style.top = this.dataset.posY + "px";
+          document.body.style.backgroundColor = this.color;
+        };
+      }
+    </script>
+  </body>
+</html>
