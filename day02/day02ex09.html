@@ -28,16 +28,23 @@
       const resultBtn = document.querySelector("#resultBtn");
 
       console.log(num1.value);
-      resultBtn.onclick = function (evnet) {
+      resultBtn.onclick = function (event) {
+        let operResult = 0;
         if (oper.value === "-") {
-          let operResult = num1.value - num2.value;
-          console.log(result);
+          // oper.value 가 - 이면서 num2가 num1 보다 클때 - 값이 나오므로 예외처리를 해준다.
+          if (parseInt(num1.value) < parseInt(num2.value)) {
+            operResult = num2.value - num1.value;
+          } else {
+            operResult = num1.value - num2.value;
+          }
         } else if (oper.value === "+") {
-          let operResult = parseInt(num1.value) + parseInt(num2.value);
-          console.log(result);
+          operResult = parseInt(num1.value) + parseInt(num2.value);
+        } else if (oper.value === "*") {
+          operResult = parseInt(num1.value) * parseInt(num2.value);
+        } else if (oper.value === "/") {
+          operResult = parseInt(num1.value) / parseInt(num2.value);
         }
-        console.log(result);
-        result.innerHTML = "결과 : " + result;
+        result.innerHTML = "결과 : " + operResult;
       };
     </script>
   </body>
