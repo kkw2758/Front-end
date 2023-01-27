@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      #calc {
+        width: 200px;
+      }
+      #calc button {
+        width: 40px;
+        height: 40px;
+        border: 1px solid;
+        border-radius: 5px;
+      }
+      #resetBtn {
+        width: 200px;
+      }
+      #result,
+      #display {
+        height: 30px;
+        width: 200px;
+        box-sizing: border-box;
+        padding: 0px;
+      }
+      button {
+        background-image: linear-gradient(#42a1ec, #0070c9);
+        border: 1px solid #0077cc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        color: #ffffff;
+        cursor: pointer;
+        direction: ltr;
+        font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons",
+          "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 17px;
+        font-weight: 400;
+        letter-spacing: -0.022em;
+        line-height: 1.47059;
+        min-width: 30px;
+        overflow: visible;
+        padding: 4px 15px;
+        text-align: center;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+      }
+
+      #calcBody {
+        border: 2px solid gray;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>계산기</h1>
+    <div id="calcBody">
+      <input id="display" type="text" />
+      <br />
+      <input id="result" type="text" disabled />
+      <div id="calc"></div>
+      <button id="resetBtn">RESET</button>
+    </div>
+    <script>
+      let display = document.getElementById("display");
+      console.log(display);
+      let result = document.getElementById("result");
+      let calc = document.getElementById("calc");
+      let operArray = ["+", "-", "*", "/"];
+      let resetBtn = document.getElementById("resetBtn");
+      resetBtn.onclick = function (event) {
+        display.value = "";
+        result.value = "";
+      };
+
+      for (let i = 0; i < 10; i++) {
+        let newBtn = document.createElement("button");
+        newBtn.className = "numberBtn";
+        newBtn.innerText = i;
+        calc.appendChild(newBtn);
+      }
+      for (let i = 0; i < operArray.length; i++) {
+        let operBtn = document.createElement("button");
+        operBtn.innerText = operArray[i];
+        operBtn.className = "operBtn";
+        calc.appendChild(operBtn);
+      }
+      let resultBtn = document.createElement("button");
+      resultBtn.innerText = "=";
+      calc.appendChild(resultBtn);
+      resultBtn.className = "resultBtn";
+      let numberButtons = document.querySelectorAll("#calc > button.numberBtn");
+      let operButtons = document.querySelectorAll("#calc > button.operBtn");
+
+      for (let i = 0; i < numberButtons.length; i++) {
+        numberButtons[i].onclick = function (event) {
+          display.value += numberButtons[i].innerText;
+        };
+      }
+      for (let i = 0; i < operButtons.length; i++) {
+        operButtons[i].onclick = function (event) {
+          display.value += operButtons[i].innerText;
+        };
+      }
+      resultBtn.onclick = function (event) {
+        result.value = Math.abs(eval(display.value));
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="background-color: red; color: yellowgreen">사원 목록</h1>
+      <p>
+        검색
+        <select id="selectedContent">
+          <option value="no">번호</option>
+          <option value="name" selected>이름</option>
+          <option value="dept">부서</option>
+          <option value="position">직급</option></select
+        ><input type="text" id="keyword" /><button id="searchBtn">검색</button>
+      </p>
+      <table class="table table-hover">
+        <thead>
+          <tr align="center">
+            <th><input type="checkbox" id="allCheck" /></th>
+            <th>번호</th>
+            <th>사진</th>
+            <th>사원명</th>
+            <th>부서</th>
+            <th>직급</th>
+            <th>수정</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody id="rows_area"></tbody>
+      </table>
+    </div>
+    <script>
+      var saramList = [
+        {
+          no: 1,
+          img: "img/noimage.jpg",
+          name: "홍길순",
+          dept: "관리부",
+          position: "과장",
+        },
+        {
+          no: 2,
+          img: "img/noimage.jpg",
+          name: "김길순",
+          dept: "생산부",
+          position: "대리",
+        },
+        {
+          no: 3,
+          img: "img/noimage.jpg",
+          name: "박길순",
+          dept: "영업부",
+          position: "부장",
+        },
+        {
+          no: 4,
+          img: "img/noimage.jpg",
+          name: "홍길동",
+          dept: "관리부",
+          position: "과장",
+        },
+        {
+          no: 4,
+          img: "img/noimage.jpg",
+          name: "권원준",
+          dept: "사이버보안학과",
+          position: "대장",
+        },
+        {
+          no: 5,
+          img: "img/maple.png",
+          name: "박성수",
+          dept: "버섯가공학과",
+          position: "박사",
+        },
+      ];
+      var selectedContent = document.querySelector("#selectedContent");
+      var searchBtn = document.querySelector("#searchBtn");
+      var keyword = document.querySelector("#keyword");
+      // console.log(searchBtn);
+      console.log(selectedContent.value);
+      searchBtn.onclick = function (event) {
+        var resultHtml = "";
+        var selectedContentValue = selectedContent.value;
+        for (var i = 0; i < saramList.length; i++) {
+          var saram = saramList[i];
+          var tmpData = `<tr align="center">
+          <td><input type="checkbox" class="check" /></td>
+          <td>${saram.no}</td>
+          <td><img src="${saram.img}" width="100" /></td>
+          <td>${saram.name}</td>
+          <td>${saram.dept}</td>
+          <td>${saram.position}</td>
+          <td><input type="button" value="수정" /></td>
+          <td><input type="button" value="삭제" /></td>
+        </tr>`;
+          if (
+            saramList[i][selectedContentValue].indexOf(keyword.value) !== -1
+          ) {
+            resultHtml += tmpData;
+          }
+          // if (saramList[i].name === keyword.value) {
+          //   resultHtml += tmpData;
+          // }
+        }
+        document.querySelector("#rows_area").innerHTML = resultHtml;
+      };
+
+      var newHtml = "";
+      for (var i = 0; i < saramList.length; i++) {
+        var saram = saramList[i];
+        var tmpData = `<tr align="center">
+        <td><input type="checkbox" class="check" /></td>
+        <td>${saram.no}</td>
+        <td><img src="${saram.img}" width="100" /></td>
+        <td>${saram.name}</td>
+        <td>${saram.dept}</td>
+        <td>${saram.position}</td>
+        <td><input type="button" value="수정" /></td>
+        <td><input type="button" value="삭제" /></td>
+      </tr>`;
+        newHtml += tmpData;
+      }
+      document.querySelector("#rows_area").innerHTML = newHtml;
+    </script>
+  </body>
+</html>

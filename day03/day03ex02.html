@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>day03ex02.html</title>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <script>
+      var demo = document.getElementById("demo");
+      // var arr = new Array();
+      var arr = ["오징어", "꼴뚜기", "대구", "명태"];
+      console.log(arr);
+      console.log("size : ", arr.length);
+      console.log("size : ", arr.length);
+      console.log("arr[0] =", arr[0]);
+      arr[1] = "메뚜기";
+      arr.splice(2, 1);
+
+      for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+      }
+      for (var fish of arr) {
+        console.log(fish);
+      }
+      // 인덱스
+      for (var i in arr) {
+        console.log(i);
+      }
+
+      arr.forEach(function (item, index) {
+        console.log(item, index);
+      });
+      var newHtml = arr.map(function (item, index) {
+        console.log(item, index);
+        return "<p>" + item + "<p>";
+      });
+      console.log(newHtml);
+      demo.innerHTML = newHtml;
+    </script>
+  </body>
+</html>
