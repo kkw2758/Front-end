@@ -29,7 +29,7 @@
 
     <script>
       var todoList = [
-        { no: 1, todo: "친구 만나서 스터디 하기", done: true },
+        { no: 1, todo: "친구 만나서 스터디 하기", done: false },
         { no: 2, todo: "주말 과제 하기", done: false },
         { no: 3, todo: "배운 내용 복습하기", done: false },
         { no: 4, todo: "자바 공부하기", done: false },
@@ -69,6 +69,7 @@
             var no = parseInt(event.target.dataset.no);
             for (var j = 0; j < todoList.length; j++) {
               if (todoList[j].no == no) {
+                // spice가 무슨함수인지
                 todoList.splice(j, 1);
               }
             }

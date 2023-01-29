@@ -1,0 +1,49 @@
+#addBtn {
+  box-shadow: 0px 5px 0px 0px #007144;
+}
+#addBtn:hover {
+  box-shadow: 0px 0px 0px 0px #007144;
+}
+#addBtn {
+  background: #00ae68;
+}
+button {
+  width: 40px;
+  padding: 0;
+  margin: 10px 20px 10px 0;
+  font-weight: 600;
+  text-align: center;
+  line-height: 25px;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.2s;
+  border: 0px;
+}
+body {
+  background-image: url(https://cdn.pixabay.com/photo/2017/02/08/11/53/hare-2048597_960_720.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.7;
+}
+.delBtn {
+  background-color: transparent;
+  border: 0px;
+}
+#clock {
+  font-size: 75px;
+  margin-bottom: 0px;
+}
+li {
+  list-style: none;
+}
+div {
+  text-align: center;
+}
+li label {
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+}
+li label.del {
+  text-decoration: line-through;
+}

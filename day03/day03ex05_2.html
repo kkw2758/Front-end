@@ -29,7 +29,7 @@
 
     <script>
       var todoList = [
-        { no: 1, todo: "친구 만나서 스터디 하기", done: true },
+        { no: 1, todo: "친구 만나서 스터디 하기", done: false },
         { no: 2, todo: "주말 과제 하기", done: false },
         { no: 3, todo: "배운 내용 복습하기", done: false },
         { no: 4, todo: "자바 공부하기", done: false },
@@ -51,14 +51,12 @@
         for (var i = 0; i < todoList.length; i++) {
           var todo = todoList[i];
           var liTmpStr = `<li>
-                    <input onChange="changeFn(${
-                      todo.no
-                    })" class="checkDone" type="checkbox" ${
-            todo.done ? "checked" : ""
-          }>
-                    <span class="${todo.done ? "del" : ""}">${todo.todo}</span>
-                    <button>삭제</button>
-                </li>`;
+            <input onChange="changeFn(${
+              todo.no
+            })" class="checkDone" type="checkbox" ${todo.done ? "checked" : ""}>
+            <span class="${todo.done ? "del" : ""}">${todo.todo}</span>
+            <button>삭제</button>
+          </li>`;
           newLis += liTmpStr;
         }
         document.querySelector("#listArea").innerHTML = newLis;
