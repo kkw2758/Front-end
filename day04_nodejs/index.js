@@ -1,10 +1,22 @@
 const express = require("express");
 const app = express();
+const PORT = 3000;
+
+console.log("__dirname", __dirname);
+// app.use(express.static(__dirname + "/public"));
+
+app.get("/form", (req, res) => {
+  res.sendFile(__dirname + "/public/day04ex03.html");
+  let subject = req.query.subject;
+  let writer = req.query.writer;
+  console.log(subject, writer);
+});
 
 // app.get(path, callback);
 app.get("/", (req, res) => {
   res.end("<h1>Home page</h1>");
 });
+
 app.get("/profile", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
   res.end("<h1>프로필 페이지</h1>");
@@ -20,8 +32,8 @@ app.get("/car", (req, res) => {
   res.end("<h1>자동차 목록 페이지</h1>");
 });
 // node index.js로 실행하면 소스 수정 후 재실해 해야 적용된다.
-// nodemon 모듈으 설치하고 nodemon으로 실행 하면 수정 후 바로 적용 됨.
-app.listen(3000, () => {
+// nodemon 모듈을 설치하고 nodemon으로 실행 하면 수정 후 바로 적용 됨.
+app.listen(PORT, () => {
   console.log("서버 실행 중 ...");
 });
 

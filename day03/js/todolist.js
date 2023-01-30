@@ -13,7 +13,6 @@ function drawList() {
       <input class="checkDone" data-no="${todo.no}" id="${
       todo.no
     }"type="checkbox" ${todo.done ? "checked" : ""}>
-      
       <label for="${todo.no}" class="${todo.done ? "del" : ""}">${
       todo.todo
     }</label>

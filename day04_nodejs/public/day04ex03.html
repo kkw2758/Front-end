@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #form1 input[type="text"],
+      #form1 textarea {
+        border: none;
+        border-bottom: 4px solid blue;
+        background-color: skyblue;
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>글쓰기</h1>
+
+    <form action="" id="form1">
+      <table>
+        <tr>
+          <th>제목</th>
+          <td><input type="text" name="subject" /></td>
+        </tr>
+        <tr>
+          <th>이름</th>
+          <td><input type="text" name="writer" /></td>
+        </tr>
+        <tr>
+          <th>내용</th>
+          <td><textarea name="" id="" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><input type="submit" value="저장" /></td>
+        </tr>
+      </table>
+    </form>
+    <script>
+      var form1 = document.querySelector("#form1"); // CSS 셀렉터를 그대로 사용
+      // 함수 따로 입력해주기
+      // form1.onsubmit = function (event) {
+      //   // event가 발생 하면 event객체가 자동 생성
+      //   event.preventDefault();
+      //   if (event.target.subject.value == "") {
+      //     alert("제목을 입력하세요.");
+      //     event.target.subject.focus();
+      //     return false;
+      //   }
+      //   if (event.target.writer.value == "") {
+      //     alert("이름을 입력하세요");
+      //     event.target.writer.focus();
+      //     return false;
+      //   }
+
+      //   if (event.target.writer.value.length < 2) {
+      //     alert("이름은 2글자 이상 입력해야합니다.");
+      //     event.target.writer.focus();
+      //     return false;
+      //   }
+
+      //   event.target.action = "https://www.naver.com";
+      //   event.target.submit();
+      // };
+      // 이벤트 헨들러 함수안에 this 추가해서 구현하기
+      // form1.onsubmit = function (event) {
+      //   event.preventDefault();
+      //   console.log(this);
+      //   if (this.subject.value == "") {
+      //     alert("제목을 입력하세요.");
+      //     this.subject.focus();
+      //     return false;
+      //   }
+      //   if (this.writer.value == "") {
+      //     alert("이름을 입력하세요");
+      //     this.writer.focus();
+      //     return false;
+      //   }
+
+      //   if (this.writer.value.length < 2) {
+      //     alert("이름은 2글자 이상 입력해야합니다.");
+      //     this.name.focus();
+      //     return false;
+      //   }
+
+      //   this.action = "https://www.naver.com";
+      //   this.submit();
+      // };
+      // form1.onsubmit = function () {
+      //   event.preventDefault();
+      //   // this == form1
+      //   validateForm(this);
+      // };
+
+      // var 또는 function으로 선언하면 최 상위 window의 멤버 필드에 들어간다
+      // event 핸들러의 첫번째 인자는 event 객체이다.
+      function validateForm(event) {
+        // form의 기본은 페이지 전환
+        // 이벤트의 기본 기능을 일시 중지 할 수 있다.
+        // 이벤트는 이벤트 핸들러 함수에서 자동 생성 된다.
+        // event.preventDefault(); // 일시 중지
+        // 이벤트 핸들러가 아니다. this == window
+        // 이벤트 헨들러면 this는 이벤트가 발생한 곳
+        form = event.target;
+        event.preventDefault();
+        if (form.subject.value == "") {
+          alert("제목을 입력하세요.");
+          form.subject.focus();
+          return false;
+        }
+        if (form.writer.value == "") {
+          alert("이름을 입력하세요");
+          form.writer.focus();
+          return false;
+        }
+
+        if (form.writer.value.length < 2) {
+          alert("이름은 2글자 이상 입력해야합니다.");
+          form.writer.focus();
+          return false;
+        }
+        // form.action = "https://www.naver.com";
+        form.submit();
+      }
+
+      form1.onsubmit = validateForm; // 참조 시킬 경우엔 괄호 생략
+
+      // internal 방식으로 변경
+      // form1의 dom 객체 선택
+      // form1에 이벤트 핸들러 걸기
+      console.dir(window);
+    </script>
+  </body>
+</html>
