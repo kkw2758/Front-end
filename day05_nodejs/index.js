@@ -21,6 +21,7 @@ app.get("/car/input", (req, res) => {
   //   res.send(req.query);
 
   req.query.no = cnt++;
+  console.log(req.query);
   carList.push(req.query);
   res.send(carList);
 });

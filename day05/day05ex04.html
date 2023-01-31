@@ -96,28 +96,29 @@
             imagesList.appendChild(newLi);
           });
 
+          console.log(box.style.width);
           console.log(getComputedStyle(box).width);
           const boxWidth = getComputedStyle(box).width.slice(0, -2);
           console.log(boxWidth);
-          console.log(box.offsetWidth);
+          // console.log(box.offsetWidth);
 
           var x = 0;
           rightBtn.onclick = function () {
-            x -= 600;
-            if (x <= -3000) {
-              x = -2400;
+            x -= 1;
+            if (x <= -imgs.length) {
+              x = -imgs.length + 1;
               message.innerText = "마지막입니다!";
               message.style.display = "block";
               setTimeout(() => {
                 message.style.display = "none";
               }, 1000);
             } else {
-              imagesList.style.left = x + "px";
+              imagesList.style.left = x * boxWidth + "px";
             }
           };
 
           leftBtn.onclick = function () {
-            x += 600;
+            x += 1;
             if (x > 0) {
               x = 0;
               message.innerText = "처음입니다!";
@@ -126,8 +127,36 @@
                 message.style.display = "none";
               }, 1000);
             } else {
-              imagesList.style.left = x + "px";
+              imagesList.style.left = x * boxWidth + "px";
             }
+
+            // var x = 0;
+            // rightBtn.onclick = function () {
+            //   x -= 600;
+            //   if (x <= -3000) {
+            //     x = -2400;
+            //     message.innerText = "마지막입니다!";
+            //     message.style.display = "block";
+            //     setTimeout(() => {
+            //       message.style.display = "none";
+            //     }, 1000);
+            //   } else {
+            //     imagesList.style.left = x + "px";
+            //   }
+            // };
+
+            // leftBtn.onclick = function () {
+            //   x += 600;
+            //   if (x > 0) {
+            //     x = 0;
+            //     message.innerText = "처음입니다!";
+            //     message.style.display = "block";
+            //     setTimeout(() => {
+            //       message.style.display = "none";
+            //     }, 1000);
+            //   } else {
+            //     imagesList.style.left = x + "px";
+            //   }
           };
         </script>
       </body>
