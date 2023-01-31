@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        border: 3px solid rgb(65, 126, 150);
+        width: 920px;
+        padding: 10px;
+        margin: auto;
+        background-color: rgb(240, 252, 248);
+      }
+      div.container div {
+        padding: 3px;
+        margin: auto;
+        margin-top: 5px;
+        border: 3px solid rgb(65, 126, 150);
+        width: 900px;
+        overflow: hidden;
+        background-color: ivory;
+      }
+
+      div.header div.first {
+        height: 70px;
+        width: 880px;
+        margin: auto;
+        margin-bottom: 10px;
+        background-color: pink;
+      }
+      div.header div.second {
+        height: 50px;
+        width: 880px;
+        margin: auto;
+        background-color: pink;
+      }
+      .second {
+        background-color: black;
+      }
+
+      div.middle {
+        text-align: center;
+      }
+
+      div.middle > div {
+        height: 250px;
+        width: 220px;
+        display: inline-block;
+        /* float: left; */
+        background-color: pink;
+      }
+      div.middle > div:nth-child(2) {
+        width: 400px;
+      }
+      div.middle div.left > div {
+        background-color: rgb(71, 153, 71);
+        height: 230px;
+        width: 200px;
+        margin: auto;
+      }
+      div.middle div.left div.content > div {
+        background-color: rgb(72, 72, 175);
+        margin: auto;
+        margin-top: 5px;
+        width: 180px;
+        height: 25px;
+      }
+      div.middle div.center > div {
+        background-color: rgb(71, 153, 71);
+        margin: auto;
+        margin-top: 10px;
+        width: 380px;
+        height: 40px;
+      }
+      div.middle div.right > div {
+        background-color: rgb(71, 153, 71);
+        margin: auto;
+        margin-top: 10px;
+        height: 40px;
+        width: 180px;
+      }
+      div.middle div.right > div:nth-child(2) {
+        height: 110px;
+      }
+      .footer {
+        height: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="first"></div>
+        <div class="second"></div>
+      </div>
+
+      <div class="middle">
+        <div class="left">
+          <div class="content">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="center">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="right">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
+</html>
