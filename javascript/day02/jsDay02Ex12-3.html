@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsDay02Ex12.html</title>
+    <style>
+      div#box {
+        border: 1px solid black;
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        left: 0px;
+        transition: all 0.03s;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="playBtn">Play</button>
+    <div id="box">box</div>
+    <script>
+      var playBtn = document.getElementById("playBtn");
+      var move = function (callback) {
+        var box = document.querySelector("div#box");
+        box.callback = callback; // box의 콜백 자기가 속해 있는 자기를 포함하고 있는 주인의 객체가 this
+        var boxStyle = getComputedStyle(box);
+        var x = parseInt(boxStyle.left);
+        var y = boxStyle.top;
+        var w = boxStyle.width;
+        var h = boxStyle.height;
+        // console.log(box.offsetWidth);
+        // console.log(x, y, w, h);
+
+        var refInterval = setInterval(function () {
+          x += 10;
+          if (x >= 400) {
+            x = 400;
+            clearInterval();
+            // 그러면 객체안의 함수에서 this는 해당 객체가 되는건가요?
+            box.callback(box); // callback == move호출 시 익명함수
+          }
+          box.style.left = x + "px";
+        }, 1000 / 30);
+      };
+
+      playBtn.onclick = function (event) {
+        move(function (target) {
+          console.log(this); // window > callback에서 this는 window
+          target.style.backgroundColor = "yellow";
+        });
+      };
+    </script>
+  </body>
+</html>
