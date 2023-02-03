@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsDay03Ex03.html</title>
+  </head>
+  <body>
+    <div id="btns">
+      <button>오렌지</button>
+      <button>바나나</button>
+      <button>수박</button>
+    </div>
+    <div id="demo"></div>
+    <script>
+      // 타입이 NodeList
+      arr = [];
+      var btns = document.querySelectorAll("div#btns > button");
+      var demo = document.getElementById("demo");
+      btns.forEach(function (item, index) {
+        arr.push(item);
+      });
+      // Javascript의 Array로 변환해서 사용
+      arr.forEach(function (item, index) {
+        item.addEventListener("click", (event) => {
+          // console.log(index);
+          // console.log(event.target.innerText);
+          // switch(값)
+          let result = "";
+          switch (index) {
+            case 0:
+              console.log("오렌지를 선택했습니다.");
+              result = "오렌지";
+              break;
+            case 1:
+              console.log("바나나를 선택했습니다.");
+              result = "바나나";
+              break;
+            case 2:
+              console.log("수박를 선택했습니다.");
+              result = "수박";
+              break;
+          }
+          demo.innerHTML = "결과 : " + result + "를 선택 했습니다.";
+        });
+      });
+    </script>
+  </body>
+</html>

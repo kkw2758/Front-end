@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 번호 생성기</title>
+    <style>
+      div#lottoArea div {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        border: 1px solid red;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>로또 번호 생성기</h1>
+    <fieldset>
+      <legend>Lotto</legend>
+      <div id="lottoArea">
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+      </div>
+    </fieldset>
+    <button id="genBtn">Generate</button>
+    <script>
+      const colors = ["red", "green", "orange", "yellow", "skyblue", "pink"];
+      const ballList = document.querySelectorAll("#lottoArea > div");
+      const genBtn = document.getElementById("genBtn");
+
+      ballList.forEach((item, index) => {
+        item.style.backgroundColor = colors[index];
+      });
+
+      function lottoFn() {
+        const lotto = new Set();
+        for (; lotto.size < 6; ) {
+          let num = 1 + Math.floor(Math.random() * 45);
+          console.log(num, lotto.size);
+          lotto.add(num);
+        }
+        //set에는 index 없음
+        let i = 0;
+        let newLotto = [];
+        lotto.forEach((value) => {
+          newLotto.push(value);
+        });
+        // Set구조에는 index가 없다. 그래도 정렬 안됨.
+        newLotto.sort(function (a, b) {
+          return a - b;
+        });
+        console.log(newLotto);
+        newLotto.forEach((value, index) => {
+          ballList[index].innerHTML = value;
+        });
+      }
+      genBtn.addEventListener("click", (event) => {
+        lottoFn();
+      });
+    </script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,8 +8,8 @@
     <style>
       div.gameBox {
         border: 1px solid orange;
-        width: 308px;
-        height: 108px;
+        width: 306px;
+        height: 102px;
         overflow: hidden;
       }
       div.gameBox ul {
@@ -21,63 +21,297 @@
       div.gameBox li {
         width: 100px;
         height: 100px;
+        line-height: 100px;
         border: 1px solid black;
         list-style: none;
+        text-align: center;
+        font-size: 50px;
       }
     </style>
   </head>
   <body>
     <h1>햄버거 하우스 게임</h1>
     <div class="gameBox"></div>
+    <button id="startBtn">Start</button>
+    <button id="stopBtn">Stop</button>
     <script>
-      console.log(gameBox);
+      function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+      }
+      var position = 0;
+      var randomImage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
       function MakeUl(gameBox) {
+        position += 1;
+        shuffle(randomImage);
         this.init = function () {
           this.ulTag = document.createElement("ul");
-          for (var i = 1; i <= 10; i++) {
+          for (var i = 0; i < 10; i++) {
             var li = document.createElement("li");
-            li.innerText = i;
+            li.innerText = randomImage[i];
             this.ulTag.appendChild(li);
           }
           gameBox.appendChild(this.ulTag);
-          this.play();
+          this.play(position);
         };
-        this.play = function () {
+
+        this.play = function (position) {
           // 랜덤한 횟수를 넣어줌
           this.ulTag.style.position = "relative";
           var y = 0;
-          var stop = Math.abs(Math.floor(Math.random() * 5));
-          console.log(stop);
-          var cnt = 0;
           var refInterval = setInterval(() => {
-            y -= 10;
-            if (y <= -1000) {
+            if (position == stopPosition) {
+              console.log(this.ulTag.style.top);
+              clearTimeout(refInterval);
+              var prefixValue = y - (y % 102);
+              console.log(y);
+              console.log(prefixValue);
+              this.ulTag.style.top = prefixValue + "px";
+              // 끝나는 값을 랜덤으로 줘보자
+            } else if (y <= -1000) {
               y = 0;
-              console.log(cnt, stop);
-              if (cnt >= stop) {
-                clearTimeout(refInterval);
-              }
-              cnt++;
+            } else {
+              y -= 10;
+              this.ulTag.style.top = y + "px";
             }
-            this.ulTag.style.top = y + "px";
           }, 20);
         };
       }
       var gameBox = document.querySelector(".gameBox");
-      new MakeUl(gameBox).init();
-      new MakeUl(gameBox).init();
-      new MakeUl(gameBox).init();
-      //     // div 안에 넣기
-      //     var ulTag = document.createElement("ul");
+      var startBtn = document.querySelector("#startBtn");
+      var stopBtn = document.querySelector("#stopBtn");
+      var startFlag = false;
+      var stopPosition = 0;
+      stopBtn.onclick = function (event) {
+        stopPosition++;
+        console.log("stopPosition = ", stopPosition);
+      };
 
-      //     var li = document.createElement("li");
-      //     li.innerText = "1";
-
-      //     gameBox.appendChild(ulTag);
-      //   }
-
-      //랜덤하게 돌다가 멈추도록
+      startBtn.onclick = function (event) {
+        if (startFlag == false) {
+          new MakeUl(gameBox).init();
+          new MakeUl(gameBox).init();
+          new MakeUl(gameBox).init();
+          startFlag = true;
+        } else {
+          console.log("이미 게임이 시작 되었습니다.");
+        }
+      };
     </script>
   </body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsDay02Homework.html</title>
+    <style>
+      div.gameBox {
+        border: 1px solid orange;
+        width: 300px;
+        height: 100px;
+        overflow: hidden;
+      }
+      div.gameBox ul {
+        margin: 0;
+        padding: 0px;
+        float: left;
+        box-sizing: border-box;
+      }
+
+      div.gameBox li {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        border: 1px solid black;
+        list-style: none;
+        text-align: center;
+        font-size: 50px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>햄버거 하우스 게임</h1>
+    <div class="gameBox"></div>
+    <button id="startBtn">Start</button>
+    <button id="stopBtn">Stop</button>
+    <button id="checkBtn">Check</button>
+    <script>
+      function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+      }
+      var position = 0;
+      var colors = ["red", "green", "blue", "skyblue", "pink"];
+
+      function MakeUl(gameBox) {
+        position += 1;
+        shuffle(colors);
+        this.init = function () {
+          this.ulTag = document.createElement("ul");
+          for (var i = 0; i < 10; i++) {
+            var li = document.createElement("li");
+            li.style.backgroundColor = colors[i % colors.length];
+            this.ulTag.appendChild(li);
+          }
+          gameBox.appendChild(this.ulTag);
+          this.play(position);
+        };
+
+        this.play = function (position) {
+          // 랜덤한 횟수를 넣어줌
+          this.ulTag.style.position = "relative";
+          var y = 0;
+
+          var refInterval = setInterval(() => {
+            console.log(y);
+            if (position == stopPosition) {
+              clearTimeout(refInterval);
+              var prefixValue = -(y + (100 - (y % 100))) % 1000;
+              this.ulTag.style.top = prefixValue + "px";
+            } else {
+              y += 10;
+              this.ulTag.style.top = -(y % 1000) + "px";
+            }
+          }, 10);
+        };
+      }
+      var gameBox = document.querySelector(".gameBox");
+      var startBtn = document.querySelector("#startBtn");
+      var stopBtn = document.querySelector("#stopBtn");
+      var checkBtn = document.querySelector("#checkBtn");
+      var startFlag = false;
+      var stopPosition = 0;
+      stopBtn.onclick = function (event) {
+        stopPosition++;
+        console.log("stopPosition = ", stopPosition);
+      };
+
+      startBtn.onclick = function (event) {
+        if (startFlag == false) {
+          new MakeUl(gameBox).init();
+          new MakeUl(gameBox).init();
+          new MakeUl(gameBox).init();
+          startFlag = true;
+        } else {
+          console.log("이미 게임이 시작 되었습니다.");
+        }
+      };
+
+      checkBtn.onclick = function (event) {
+        var beforeColor = ""; // 이전 블록 값
+        var isBingo = true; // 빙고 여부 검사 플레그
+        for (var i = 1; i < 4; i++) {
+          var ul = document.querySelector(`.gamebox > ul:nth-child(${i})`);
+          var lis = ul.querySelectorAll("li");
+          var idx = (parseInt(ul.style.top) * -1) / 100;
+          var nowColor = lis[idx].style.backgroundColor;
+
+          if (beforeColor == "") {
+            beforeColor = nowColor;
+          } else if (beforeColor != nowColor) {
+            isBingo = false;
+            break;
+          }
+        }
+        if (isBingo) {
+          console.log("빙고");
+        } else {
+          console.log("빙고 아님");
+        }
+      };
+    </script>
+  </body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsDay02Homework.html</title>
+    <style>
+        div.gameBox {
+            border: 1px solid orange;
+            width : 300px;
+            height: 100px;
+            overflow: hidden;
+        }
+        div.gameBox ul {
+            margin: 0;
+            padding: 0px;
+            float: left;
+        }
+        div.gameBox li {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            list-style: none;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>햄버거 하우스 게임</h1>
+    <p><button id="playBtn">Play</button></p>
+    <div class="gameBox"></div>
+
+    <script>
+        function MakeUl(gameBox) {
+            this.SIZE = 5;
+            this.init = function() {
+                // li 배경 색을 준비한다.
+                let colors = ['orange','blue','pink','yellowgreen','green'];
+                this.ulTag = document.createElement("ul");
+                for(var i=1; i<=this.SIZE; i++) {
+                    var li = document.createElement("li");
+                    li.style.backgroundColor = colors[i%5];
+                    li.innerText = i;
+                    this.ulTag.appendChild(li);ㄴ
+                }
+                gameBox.appendChild(this.ulTag);
+
+                // 게임 실행
+                //this.play();
+
+                // 체인 형태로 만들기 위해 객체 자신을 반환.
+                return this;
+            }
+
+            this.play = function() {
+                this.ulTag.style.position = "relative";
+                var y = 0;
+                var end = 10 + Math.floor(Math.random()*20);
+                end *= 100;
+                var refInterval = setInterval(() => {
+                    y += 10;
+                    if(y >= end) {
+                        clearTimeout(refInterval);
+                    }
+                    this.ulTag.style.top = -(y%(this.SIZE*100)) + "px";
+                }, 10);
+            }
+        } // end of MakeUl ...
+
+        var gameBox = document.querySelector(".gameBox");
+        var ul01 = new MakeUl(gameBox).init();
+        var ul02 = new MakeUl(gameBox).init();
+        var ul03 = new MakeUl(gameBox).init();
+
+        var playBtn = document.getElementById("playBtn");
+        playBtn.addEventListener('click', (event) => {
+            console.log("click play btn")
+            ul01.play();
+            ul02.play();
+            ul03.play();
+        });
+    </script>
+</body>
 </html>

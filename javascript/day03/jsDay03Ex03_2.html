@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsDay03Ex03_2.html</title>
+  </head>
+  <body>
+    <h1>월을 선택하세요.</h1>
+    <div id="monthBtns">
+      <button data-month="1">1월</button>
+      <button data-month="2">2월</button>
+      <button data-month="3">3월</button>
+      <button data-month="4">4월</button>
+      <button data-month="5">5월</button>
+      <button data-month="6">6월</button>
+      <button data-month="7">7월</button>
+      <button data-month="8">8월</button>
+      <button data-month="9">9월</button>
+      <button data-month="10">10월</button>
+      <button data-month="11">11월</button>
+      <button data-month="12">12월</button>
+    </div>
+    <div id="demo">결과: 2월은 28일 까지 있다.</div>
+    <script>
+      // switch case문
+      var monthBtns = document.querySelectorAll("div#monthBtns > button");
+      var result = document.querySelector("#demo");
+      monthBtns.forEach(function (item, index) {
+        item.addEventListener("click", function (event) {
+          console.log(item.dataset.month);
+          switch (Number(item.dataset.month)) {
+            case 2:
+              result.innerHTML = `결과 : ${item.dataset.month}월은 28일까지 있습니다.`;
+              break;
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+              result.innerHTML = `결과 : ${item.dataset.month}월은 31일까지 있습니다.`;
+              break;
+            default:
+              result.innerHTML = `결과 : ${item.dataset.month}월은 30일까지 있습니다.`;
+              break;
+          }
+        });
+        console.log(item);
+      });
+    </script>
+  </body>
+</html>
