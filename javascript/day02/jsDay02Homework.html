@@ -1,107 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jsDay02Homework.html</title>
-    <style>
-      div.gameBox {
-        border: 1px solid orange;
-        width: 306px;
-        height: 102px;
-        overflow: hidden;
-      }
-      div.gameBox ul {
-        margin: 0;
-        padding: 0px;
-        float: left;
-      }
-
-      div.gameBox li {
-        width: 100px;
-        height: 100px;
-        line-height: 100px;
-        border: 1px solid black;
-        list-style: none;
-        text-align: center;
-        font-size: 50px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>햄버거 하우스 게임</h1>
-    <div class="gameBox"></div>
-    <button id="startBtn">Start</button>
-    <button id="stopBtn">Stop</button>
-    <script>
-      function shuffle(array) {
-        array.sort(() => Math.random() - 0.5);
-      }
-      var position = 0;
-      var randomImage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-      function MakeUl(gameBox) {
-        position += 1;
-        shuffle(randomImage);
-        this.init = function () {
-          this.ulTag = document.createElement("ul");
-          for (var i = 0; i < 10; i++) {
-            var li = document.createElement("li");
-            li.innerText = randomImage[i];
-            this.ulTag.appendChild(li);
-          }
-          gameBox.appendChild(this.ulTag);
-          this.play(position);
-        };
-
-        this.play = function (position) {
-          // 랜덤한 횟수를 넣어줌
-          this.ulTag.style.position = "relative";
-          var y = 0;
-          var refInterval = setInterval(() => {
-            if (position == stopPosition) {
-              console.log(this.ulTag.style.top);
-              clearTimeout(refInterval);
-              var prefixValue = y - (y % 102);
-              console.log(y);
-              console.log(prefixValue);
-              this.ulTag.style.top = prefixValue + "px";
-              // 끝나는 값을 랜덤으로 줘보자
-            } else if (y <= -1000) {
-              y = 0;
-            } else {
-              y -= 10;
-              this.ulTag.style.top = y + "px";
-            }
-          }, 20);
-        };
-      }
-      var gameBox = document.querySelector(".gameBox");
-      var startBtn = document.querySelector("#startBtn");
-      var stopBtn = document.querySelector("#stopBtn");
-      var startFlag = false;
-      var stopPosition = 0;
-      stopBtn.onclick = function (event) {
-        stopPosition++;
-        console.log("stopPosition = ", stopPosition);
-      };
-
-      startBtn.onclick = function (event) {
-        if (startFlag == false) {
-          new MakeUl(gameBox).init();
-          new MakeUl(gameBox).init();
-          new MakeUl(gameBox).init();
-          startFlag = true;
-        } else {
-          console.log("이미 게임이 시작 되었습니다.");
-        }
-      };
-    </script>
-  </body>
-</html> -->
-
-<!-- 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -112,7 +8,7 @@
     <style>
       div.gameBox {
         border: 1px solid orange;
-        width: 300px;
+        /* width: 300px; */
         height: 100px;
         overflow: hidden;
       }
@@ -137,19 +33,18 @@
   </head>
   <body>
     <h1>햄버거 하우스 게임</h1>
-    <div class="gameBox"></div>
+    <div id="container"></div>
     <button id="startBtn">Start</button>
     <button id="stopBtn">Stop</button>
+    <button id="reStartBtn">Restart</button>
     <button id="checkBtn">Check</button>
     <script>
       function shuffle(array) {
         array.sort(() => Math.random() - 0.5);
       }
-      var position = 0;
-      var colors = ["red", "green", "blue", "skyblue", "pink"];
-
-      function MakeUl(gameBox) {
-        position += 1;
+      // var colors = ["red", "green", "blue", "skyblue", "pink"];
+      var colors = ["#bae5d5", "#9fd3c7", "#385170", "#142d4c"];
+      function MakeUl(gameBox, position) {
         shuffle(colors);
         this.init = function () {
           this.ulTag = document.createElement("ul");
@@ -168,150 +63,179 @@
           var y = 0;
 
           var refInterval = setInterval(() => {
-            console.log(y);
             if (position == stopPosition) {
               clearTimeout(refInterval);
-              var prefixValue = -(y + (100 - (y % 100))) % 1000;
+              var prefixValue = -(y + (100 - (y % 100))) % 900;
               this.ulTag.style.top = prefixValue + "px";
             } else {
               y += 10;
-              this.ulTag.style.top = -(y % 1000) + "px";
+              this.ulTag.style.top = -(y % 900) + "px";
             }
           }, 10);
         };
       }
-      var gameBox = document.querySelector(".gameBox");
+      var gmaeBoxContiner = document.querySelector("#container");
+      const gameBoxCnt = Number(prompt("게임판의 크기를 입력해주세요 : "));
+      for (var i = 0; i < gameBoxCnt; i++) {
+        var div = document.createElement("div");
+        div.className = "gameBox";
+        div.style.width = 100 * gameBoxCnt + "px";
+        gmaeBoxContiner.appendChild(div);
+      }
+      var gameBoxes = document.querySelectorAll(".gameBox");
       var startBtn = document.querySelector("#startBtn");
       var stopBtn = document.querySelector("#stopBtn");
       var checkBtn = document.querySelector("#checkBtn");
+      var reStartBtn = document.querySelector("#reStartBtn");
       var startFlag = false;
       var stopPosition = 0;
+      // // 추후 자주 사용할 gameBox의 행의 길이 상수로 저장
+      // const gameBoxCnt = gameBoxes.length;
+
       stopBtn.onclick = function (event) {
-        stopPosition++;
-        console.log("stopPosition = ", stopPosition);
+        if (startFlag == true) {
+          if (stopPosition == gameBoxCnt) {
+            alert(
+              "이미 게임이 종료되었습니다.\nCheck버튼을 눌러 결과를 확인해주세요"
+            );
+          } else {
+            stopPosition++;
+            console.log("stopPosition = ", stopPosition);
+          }
+        }
       };
 
       startBtn.onclick = function (event) {
         if (startFlag == false) {
-          new MakeUl(gameBox).init();
-          new MakeUl(gameBox).init();
-          new MakeUl(gameBox).init();
+          for (var i = 1; i < gameBoxCnt + 1; i++) {
+            gameBoxes.forEach(function (item) {
+              new MakeUl(item, i).init();
+            });
+          }
           startFlag = true;
         } else {
           console.log("이미 게임이 시작 되었습니다.");
         }
       };
 
-      checkBtn.onclick = function (event) {
-        var beforeColor = ""; // 이전 블록 값
-        var isBingo = true; // 빙고 여부 검사 플레그
-        for (var i = 1; i < 4; i++) {
-          var ul = document.querySelector(`.gamebox > ul:nth-child(${i})`);
-          var lis = ul.querySelectorAll("li");
-          var idx = (parseInt(ul.style.top) * -1) / 100;
-          var nowColor = lis[idx].style.backgroundColor;
+      reStartBtn.onclick = function (event) {
+        if (startFlag) {
+          // 정지할 라인을 나타내는 변수 stopPosition
+          stopPosition = 0;
+          // gameBox들을 전부다 비워준다
+          gameBoxes.forEach(function (item) {
+            item.innerHTML = "";
+          });
 
-          if (beforeColor == "") {
-            beforeColor = nowColor;
-          } else if (beforeColor != nowColor) {
-            isBingo = false;
-            break;
+          for (var i = 1; i < gameBoxCnt + 1; i++) {
+            gameBoxes.forEach(function (item) {
+              new MakeUl(item, i).init();
+            });
+          }
+        } else {
+          alert("아직 게임 시작도 안하셨습니다..");
+        }
+      };
+
+      function bingoCheck(colorArr) {
+        var result = [];
+        // 행 체크
+        for (var row = 0; row < gameBoxCnt; row++) {
+          var isBingo = true;
+          var beforeColor = "";
+          for (var col = 0; col < gameBoxCnt; col++) {
+            if (beforeColor == "") {
+              beforeColor = colorArr[row][col];
+            } else {
+              if (beforeColor != colorArr[row][col]) {
+                isBingo = false;
+                break;
+              }
+            }
+          }
+          if (isBingo) {
+            result.push(`${row + 1}행`);
+          }
+        }
+        // 열 체크
+        for (var col = 0; col < gameBoxCnt; col++) {
+          var isBingo = true;
+          var beforeColor = "";
+          for (var row = 0; row < gameBoxCnt; row++) {
+            if (beforeColor == "") {
+              beforeColor = colorArr[row][col];
+            } else {
+              if (beforeColor != colorArr[row][col]) {
+                isBingo = false;
+                break;
+              }
+            }
+          }
+          if (isBingo) {
+            result.push(`${col + 1}열`);
+          }
+        }
+        // 대각선
+        var slashColor = "";
+        var isBingo = true;
+        for (var i = 0; i < gameBoxCnt; i++) {
+          if (slashColor == "") {
+            slashColor = colorArr[gameBoxCnt - i - 1][i];
+          } else {
+            if (slashColor != colorArr[gameBoxCnt - i - 1][i]) {
+              isBingo = false;
+            }
           }
         }
         if (isBingo) {
-          console.log("빙고");
+          result.push("왼쪽아래 오른쪽 위 대각선");
+        }
+
+        var backSlashColor = "";
+        var isBingo = true;
+        for (var i = 0; i < gameBoxCnt; i++) {
+          if (backSlashColor == "") {
+            backSlashColor = colorArr[i][i];
+          } else {
+            if (backSlashColor != colorArr[i][i]) {
+              isBingo = false;
+            }
+          }
+        }
+        if (isBingo) {
+          result.push("왼쪽 위 부터 오른쪽 아래 대각선");
+        }
+        return result;
+      }
+
+      checkBtn.onclick = function (event) {
+        // 멈춘 블록의 색상값을 2차원 배열로 받아온다.
+        var colorArr = [];
+        // 빙고체크 플레그
+        var isBingo = false;
+
+        // 생상값을 받아오는 과정
+        for (var i = 0; i < gameBoxCnt; i++) {
+          colorArr.push([]);
+        }
+        gameBoxes.forEach(function (item, row) {
+          var uls = item.querySelectorAll("ul");
+          uls.forEach(function (ul) {
+            var lis = ul.querySelectorAll("li");
+            var idx = (parseInt(ul.style.top) * -1) / 100;
+            var nowColor = lis[idx].style.backgroundColor;
+            colorArr[row].push(nowColor);
+          });
+        });
+        console.log(colorArr);
+        var result = bingoCheck(colorArr);
+        console.log(result);
+        if (result.length === 0) {
+          alert("빙고가 없습니다.");
         } else {
-          console.log("빙고 아님");
+          alert(result.join() + "빙고 입니다.");
         }
       };
     </script>
   </body>
-</html> -->
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jsDay02Homework.html</title>
-    <style>
-        div.gameBox {
-            border: 1px solid orange;
-            width : 300px;
-            height: 100px;
-            overflow: hidden;
-        }
-        div.gameBox ul {
-            margin: 0;
-            padding: 0px;
-            float: left;
-        }
-        div.gameBox li {
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
-            list-style: none;
-            box-sizing: border-box;
-        }
-    </style>
-</head>
-<body>
-    <h1>햄버거 하우스 게임</h1>
-    <p><button id="playBtn">Play</button></p>
-    <div class="gameBox"></div>
-
-    <script>
-        function MakeUl(gameBox) {
-            this.SIZE = 5;
-            this.init = function() {
-                // li 배경 색을 준비한다.
-                let colors = ['orange','blue','pink','yellowgreen','green'];
-                this.ulTag = document.createElement("ul");
-                for(var i=1; i<=this.SIZE; i++) {
-                    var li = document.createElement("li");
-                    li.style.backgroundColor = colors[i%5];
-                    li.innerText = i;
-                    this.ulTag.appendChild(li);ㄴ
-                }
-                gameBox.appendChild(this.ulTag);
-
-                // 게임 실행
-                //this.play();
-
-                // 체인 형태로 만들기 위해 객체 자신을 반환.
-                return this;
-            }
-
-            this.play = function() {
-                this.ulTag.style.position = "relative";
-                var y = 0;
-                var end = 10 + Math.floor(Math.random()*20);
-                end *= 100;
-                var refInterval = setInterval(() => {
-                    y += 10;
-                    if(y >= end) {
-                        clearTimeout(refInterval);
-                    }
-                    this.ulTag.style.top = -(y%(this.SIZE*100)) + "px";
-                }, 10);
-            }
-        } // end of MakeUl ...
-
-        var gameBox = document.querySelector(".gameBox");
-        var ul01 = new MakeUl(gameBox).init();
-        var ul02 = new MakeUl(gameBox).init();
-        var ul03 = new MakeUl(gameBox).init();
-
-        var playBtn = document.getElementById("playBtn");
-        playBtn.addEventListener('click', (event) => {
-            console.log("click play btn")
-            ul01.play();
-            ul02.play();
-            ul03.play();
-        });
-    </script>
-</body>
 </html>
