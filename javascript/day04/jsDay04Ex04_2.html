@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        border: 2px solid gray;
+        padding: 5px;
+      }
+      MyDiv {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">Box</div>
+    <script>
+      // HTMLDivElement를 상속하는 Mydiv 생성
+      // 무슨 예제인지 모르겠다
+      class Mydiv extends HTMLDivElement {
+        constructor() {
+          console.log("MyDiv 엘리먼트 생성");
+        }
+        testDiv() {
+          console.log("test div 메소드 호출");
+        }
+      }
+      // Object > EventTarget > Node > Element > HTMLElement > HTMLDivElement
+      var box = document.getElementById("box");
+      console.dir(box);
+      console.log("<", myDiv);
+      var myDiv = document.createElement("MyDiv");
+      myDiv.innerHTML = "";
+      console.log(myDiv);
+      myDiv.innerHTML = "MY Div 태그";
+      console.log(myDiv.innerHTML);
+      box.appendChild(myDiv);
+    </script>
+  </body>
+</html>
