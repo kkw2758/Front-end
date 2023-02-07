@@ -11,6 +11,8 @@ app.use(express.static("public"));
 // npm install --save ejs
 app.set("view engine", "ejs");
 app.set("views", "./template");
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 const saramList = [
   {
@@ -50,8 +52,15 @@ const saramList = [
     phone: "010-1111-6666",
   },
 ];
+
 app.get("/saram/list", (req, res) => {
   res.send({ saramList: saramList }); // {saramList : saramList}
+});
+app.post("/saram/list", (req, res) => {
+  const newSaram = req.body;
+  newSaram.no = saramList.length + 1;
+  saramList.push(newSaram);
+  console.log(saramList);
 });
 
 app.get("/", (req, res) => {

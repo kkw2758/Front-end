@@ -15,10 +15,10 @@
   </head>
   <body>
     <h1>jsDAy05Ex02_2</h1>
-    <form id="inputForm" action="" method="get">
-      Name : <input id="name" type="text" value="test2" /><br />
-      Email : <input id="email" type="text" value="test2@saram.com" /><br />
-      Phone : <input id="phone" type="text" value="010-2222-2222" /><br />
+    <form id="inputForm" action="/saram/list" method="POST">
+      Name : <input name="name" type="text" value="test2" /><br />
+      Email : <input name="email" type="text" value="test2@saram.com" /><br />
+      Phone : <input name="phone" type="text" value="010-2222-2222" /><br />
       <input type="submit" value="SAVE" />
     </form>
     <div id="demo">Ajax기술로 saram_data.json파일의 내용을 로드한다.</div>
@@ -49,7 +49,7 @@
       var loadBtn = document.getElementById("loadBtn");
       var saramListTemp = document.getElementById("saramListTemp");
       var inputForm = document.getElementById("inputForm");
-
+      var tempSaramList = [];
       // 라이브러리의 Ajax로 대체 되는 함수 : axios, jQuery ajax
       var myGetAjax = (srcUrl, callback) => {
         const xhr = new XMLHttpRequest();
@@ -61,17 +61,13 @@
       };
 
       // inputForm의 전송 버튼을 누르면 데이터가 전송되도록
-      inputForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // 기본 기능 중지.
-        let form = event.target;
-        console.log(form.email.value);
-        console.log(form.name.value);
-
-        // 2023/02/07 과제
-        // form의 데이터를 읽어온다.
-        // myGetAjax를 이용해서 서버에 전송한다.
-        // 결과를 json으로 받아서 화면 갱신한다.
-      });
+      // inputForm.addEventListener("submit", (event) => {
+      //   // event.preventDefault(); // 기본 기능 중지.
+      //   const formData = new FormData(event.target);
+      //   const name = formData.get("name");
+      //   const email = formData.get("email");
+      //   const phone = formData.get("phone");
+      // });
 
       loadBtn.addEventListener("click", (event) => {
         // index.js에 /saram/list 요청 구현
