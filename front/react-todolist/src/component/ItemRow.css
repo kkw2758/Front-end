@@ -1,0 +1,7 @@
+input.checked {
+  text-decoration: line-through;
+}
+input[disabled] {
+  background-color: transparent;
+  border: 1px;
+}
