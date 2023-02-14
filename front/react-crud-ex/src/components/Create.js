@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 // props.createProduct
 function Create(props) {
   const [name, setName] = useState("");
@@ -28,7 +27,7 @@ function Create(props) {
 
   return (
     <>
-      <form>
+      <div>
         <label htmlFor="name">Name:</label>
         <input
           value={name}
@@ -70,7 +69,6 @@ function Create(props) {
         <br />
         <button
           onClick={(e) => {
-            e.preventDefault();
             const formData = {
               name: name,
               description: description,
@@ -79,11 +77,12 @@ function Create(props) {
             };
             props.createProduct(formData);
             console.log(formData);
+            window.location.href = "./Read";
           }}
         >
           Save
         </button>
-      </form>
+      </div>
     </>
   );
 }

@@ -3,10 +3,11 @@ import InputItem from "./components/InputItem";
 import TodoList from "./components/TodoList";
 
 function App() {
+  console.log("B");
   const [todoList, setTodoList] = useState([]);
   const [noCount, setNoCount] = useState(1);
-
   useEffect(() => {
+    console.log("A");
     const localStorageData = localStorage.getItem("todoListData");
     if (localStorageData) {
       let objData = JSON.parse(localStorageData);
