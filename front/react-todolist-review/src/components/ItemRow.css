@@ -1,0 +1,11 @@
+input.done {
+  text-decoration: line-through;
+}
+input[disabled] {
+  background-color: transparent;
+  border: 1px;
+}
+input[readOnly] {
+  border: 0;
+  background-color: transparent;
+}

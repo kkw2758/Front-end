@@ -10,6 +10,13 @@ function InputItem(props) {
         onChange={(e) => {
           setNewWork(e.target.value);
         }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            console.log("Enter Key");
+            props.appendItem(newWork);
+            setNewWork("");
+          }
+        }}
       ></input>
       <button
         onClick={(e) => {

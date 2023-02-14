@@ -1,7 +1,7 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
-import InputItem from "./component/InputItem";
-import TodoList from "./component/TodoList";
+import React, { useState } from "react";
+import InputItem from "./components/InputItem";
+import TodoList from "./components/TodoList";
 
 const App = () => {
   // App 컴포넌트가 mount되면 실행
@@ -53,15 +53,14 @@ const App = () => {
     setnoCount((now) => now + 1);
     localStorage.setItem("todoList", JSON.stringify(newArr));
   }
-  function onToggle(targetNo) {
-    const newArr = [];
-    todoList.map((item, index) => {
-      if (item.no == targetNo) {
-        item.done = !item.done;
-      }
-      newArr.push(item);
-    });
-    console.log(newArr);
+  function updateItem(item) {
+    // 없어도 됨
+    // const idx = todoList.findIndex((todo) => {
+    //   return todo.no === item.no;
+    // });
+    // todoList[idx] = item;
+    localStorage.setItem("todoList", JSON.stringify([...todoList]));
+    setTodoList([...todoList]);
   }
   return (
     <>
@@ -74,7 +73,7 @@ const App = () => {
       <TodoList
         todoList={todoList}
         removeItem={removeItem}
-        onToggle={onToggle}
+        updateItem={updateItem}
       />
     </>
   );
