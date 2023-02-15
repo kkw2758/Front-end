@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function Update(props) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
   const params = useParams();
   const editNo = Number(params.no);
   const idx = props.productList.findIndex((item, idx) => {
@@ -9,11 +13,13 @@ function Update(props) {
   });
   console.log("idx", idx);
   console.log(editNo);
-  console.log(props.productList[idx].no);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
+  if (idx !== -1) {
+    setName(props.productList[idx].name);
+    setDescription(props.productList[idx].description);
+    setPrice(props.productList[idx].price);
+    setCategory(props.productList[idx].category);
+  }
+  // console.log(props.productList[idx].no);
 
   const handleName = (event) => {
     setName(event.target.value);
