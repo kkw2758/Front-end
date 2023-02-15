@@ -1,12 +1,21 @@
 import React from "react";
 
-function Main(props) {
+function Read(props) {
   console.log("props.productList", props.productList);
   return (
     <>
       <h1>Read Products</h1>
-      <table border="1">
-        <thead>
+      <hr />
+      <button
+        className="btn btn-primary"
+        onClick={() => {
+          window.location.href = "/create/";
+        }}
+      >
+        Create Button
+      </button>
+      <table className="table">
+        <thead className="table-light">
           <tr>
             <th>Name</th>
             <th>Description</th>
@@ -24,8 +33,8 @@ function Main(props) {
                 <td>{item.price}</td>
                 <td>{item.category}</td>
                 <td>
-                  <button>Read</button>
                   <button
+                    className="btn btn-primary"
                     onClick={() => {
                       window.location.href = "/update/" + item.no;
                     }}
@@ -33,6 +42,7 @@ function Main(props) {
                     Edit
                   </button>
                   <button
+                    className="btn btn-danger"
                     onClick={() => {
                       window.location.href = "/delete/" + item.no;
                     }}
@@ -49,4 +59,4 @@ function Main(props) {
   );
 }
 
-export default Main;
+export default Read;
