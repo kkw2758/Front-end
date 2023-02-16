@@ -54,17 +54,19 @@ app.get("/todoList/delete", (req, res) => {
 
 app.get("/todoList/update", (req, res) => {
   console.log("GET - /todoList/update");
-  let idx = req.query.idx;
-  let title = req.query.title;
-
-  console.log("idx:" + idx, "title:" + title);
+  const idx = req.query.idx;
+  const title = req.query.title;
+  const done = req.query.done === "true" ? true : false;
+  console.log(done);
   const targetIdx = todoList.findIndex((item, index) => {
     return idx == item.idx;
   });
   if (targetIdx !== -1) {
-    todoList[targetIdx].title = title;
+    todoList[targetIdx].title = title ? title : todoList[targetIdx].title;
+    todoList[targetIdx].done =
+      typeof done === "boolean" ? done : todoList[targetIdx].done;
   }
-
+  console.log("AFTER", todoList[targetIdx]);
   res.redirect("/todoList");
 });
 
