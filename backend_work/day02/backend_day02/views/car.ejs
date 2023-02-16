@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <% console.log("Hello ejs!"); console.log("userName : "+ userName) %>
+  </head>
+  <body>
+    <h1>내 인생이 중고</h1>
+    <% console.log(carList); for (var car of carList) { %>
+    <!-- HTML로 작성 -->
+    <p>
+      <%= car.no %>, <%= car.title %>, <%= car.price %> <%= car.company %>, <%=
+      car.year %>
+    </p>
+    <% } //end of for %>
+
+    <p>사용자 : <%=userName%></p>
+  </body>
+</html>
