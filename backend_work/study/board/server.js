@@ -8,6 +8,9 @@ const router = express.Router();
 const formidable = require("formidable");
 const fs = require("fs");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
@@ -16,11 +19,10 @@ app.set("port", process.env.PORT || 3001);
 
 app.use(cors());
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static(__dirname + "/public"));
 
+const humanInfoList = [];
+let noCnt = 0;
 router.route("/").get((req, res) => {
   res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
   res.write("<h1>세현이의 두근두근 홈페이지</h1>");
@@ -29,38 +31,35 @@ router.route("/").get((req, res) => {
 
 router.route("/humanInfoMangement").get((req, res) => {
   console.log("GET - /humanInfoMangement");
-  req.app.render("humanInfoMangement", {}, (err, data) => {
+  req.app.render("humanInfoMangement", { humanInfoList }, (err, data) => {
     if (err) throw err;
     res.end(data);
   });
 });
 
 router.route("/append").post((req, res) => {
-  /*
-  console.log("POST - /append");
-  const form = new formidable.IncomingForm();
-  console.log(req.body);
-  form.parse(req, function (err, fields, files) {
-    console.log("DFSDFAGAFGA");
-    var oldpath = files.photo.filepath;
-    var newpath = "./public/images/" + files.photo.originalFilename;
-    fs.rename(oldpath, newpath, function (err) {
-      if (err) throw err;
-      res.write("File uploaded and moved!");
-      res.end();
-    });
-  });*/
   // form-data 파싱을 위한 form 객체 생성
   const form = new formidable.IncomingForm();
-  console.dir(form);
+  console.log("POST - /append");
   form.parse(req, function (err, fields, files) {
-    console.log(files);
-    var oldpath = files.file.path;
-    var newpath = "./public/images/" + files.photo.originalFilename;
-    fs.rename(oldpath, newpath, function (err) {
+    const id = fields.id;
+    const name = fields.name;
+    const email = fields.email;
+    console.log("fields :", fields);
+    const oldPath = files.file._writeStream.path;
+    console.log("oldPath", oldPath);
+    const newPath = "./public/images/" + files.file.originalFilename;
+    fs.rename(oldPath, newPath, function (err) {
       if (err) throw err;
-      res.write("File uploaded and moved!");
-      res.end();
+      humanInfoList.push({
+        no: noCnt++,
+        id,
+        name,
+        email,
+        image: "/images/" + files.file.originalFilename,
+      });
+      console.log(humanInfoList);
+      res.redirect("/humanInfoMangement");
     });
   });
 });
