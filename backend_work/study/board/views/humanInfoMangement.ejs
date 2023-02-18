@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <title>게시판</title>
+</head>
+<body>
+    <h1>사람 정보 관리</h1>
+    <h3>정보 입력</h3>
+    <form action="/append" method="post">
+    <table border="1px">
+        <tr>
+            <td>아이디</td>
+            <td><input type="text" placeholder="아이디를 입력해주세요.." name="id"></td>
+            <td rowspan="4">사진 미리보기</td>
+        </tr>
+        <tr>
+            <td>성명</td>
+            <td><input type="text" placeholder="이름을 입력해주세요.." name="name"></td>
+        </tr>
+        <tr>
+            <td>이메일</td>
+            <td><input type="email" placeholder="이메일을 입력해주세요.." name="emial"></td>
+        </tr>
+        <tr>
+            <td>사진</td>
+            <td><input type="file" accept=".gif, .jpg, .png" name="file"></td>
+            
+        </tr>
+        <tr>
+            <td colspan="3"><input type="submit" value="저장"></td>
+        </tr>
+    </table>
+</form>
+<script>
+    $("tr td")[8].addEventListener("change", (e) => {
+        let input = event.target;
+        // FileReader
+        if (input.files && input.files[0]) {
+          let reader = new FileReader();
+          reader.addEventListener("load", (e) => {
+            let readImg = e.target.result;
+            $("tr td")[2].innerHTML = `<img src="${readImg}" width="200"/>`;
+          });
+          // readAsDataURL이 실행되면 위의 load 이벤트 발생
+          reader.readAsDataURL(input.files[0]);
+        }
+    })
+</script>
+</body>
+</html>
