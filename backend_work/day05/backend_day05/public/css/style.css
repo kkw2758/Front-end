@@ -1,0 +1,43 @@
+body {
+  margin: 0px;
+}
+
+#cv {
+  border: 12px solid brown;
+  background-image: url("../images/blackboard.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline;
+  float: left;
+}
+
+#menu {
+  float: left;
+}
+
+#messageView {
+  width: 400px;
+  height: 200px;
+  border: 1px solid gray;
+  float: left;
+}
+
+button#clear {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+#cv_pen {
+  width: 100px;
+  height: 50px;
+  float: left;
+  background-image: url("images/blackboard.jpg");
+}
+
+fieldset {
+  width: 100px;
+  height: 60px;
+  /*float: left:left;*/
+}

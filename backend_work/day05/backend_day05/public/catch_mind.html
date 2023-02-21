@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <!-- <script src="js/jquery.js"></script> -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- <script src="js/underscore.js"></script> -->
+    <script src="js/catch_mind.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <h1>Catch Mind</h1>
+    <button id="connectBtn">연결하기</button>
+    <button id="closeBtn">접속 해제</button>
+    <hr />
+    <input id="userId" value="test01" />
+    <input id="userName" value="테스트01" />
+    <input id="userMessage" value="테스트01입니다." />
+    <button id="loginBtn">로그인</button>
+    <hr />
+    <canvas id="cv"></canvas>
+    <div id="menu">
+      <button id="clear">clear</button>
+      <fieldset>
+        <legend>색상변경</legend>
+        <input id="penColor" type="color" value="#ffffff" />
+        <!-- <select id="pen_color"></select> -->
+      </fieldset>
+      <fieldset>
+        <legend>펜 두깨</legend>
+        <input
+          type="number"
+          id="penWidth"
+          value="1"
+          step="1"
+          min="1"
+          max="15"
+        />
+      </fieldset>
+      <button id="startBtn">Game Start</button>
+    </div>
+    <table border="1">
+      <tr>
+        <th>전체 채팅</th>
+        <td><input id="recepient" type="text" value="All" disabled /></td>
+      </tr>
+      <tr>
+        <th>메세지</th>
+        <td>
+          <input id="message" type="text" placeholder="메세지를 입력해주세요" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><button id="sendBtn">전송</button></td>
+      </tr>
+    </table>
+    <hr />
+    <div id="messageView">---채팅 내역---<br /></div>
+  </body>
+</html>
