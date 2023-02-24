@@ -1,0 +1,16 @@
+package org.comstudy.myapp;
+
+import org.comstudy.myapp.saram.model.SaramDTO;
+
+public class Main {
+	// UTF-8 아니면 다깨짐
+	// Run As > Run on Server 실행 : 웹 실행
+	// Run As > Java Application 실행 : 로컬 어플리케이션 / main() 에서 실행 되는 Application
+	public static void main(String[] args) {
+		// 웹에서 실행 되지 않음.
+		System.out.println("Hello Spring world!");
+	
+		SaramDTO saramDTO = new SaramDTO(11, "KIM", "김유신", 35);
+		
+	}
+}

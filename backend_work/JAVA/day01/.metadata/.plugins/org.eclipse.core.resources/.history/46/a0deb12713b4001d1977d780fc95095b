@@ -1,0 +1,9 @@
+package org.comstudy.myapp;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class SaramController {
+	public String saram() {
+		return "saram/list";
+	}
+}

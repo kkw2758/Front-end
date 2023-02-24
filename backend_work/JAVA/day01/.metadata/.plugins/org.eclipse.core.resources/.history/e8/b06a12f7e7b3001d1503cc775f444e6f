@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NewFile.jsp</title>
+</head>
+<body>
+<h1>webapp/NewFile.jsp</h1>
+<p>WEB-INF 풀더의 내용은 외부에서 접근 불가능 하다.</br>
+webapp은 root 디렉토리이므로 현재 프로젝트의 홈디렉토리가 된다.(외부에서 접근 가능)
+</p>
+<p>
+Project Lombok은 빈을 생성 하거나 할때 자동으로 멤버를 만들어주는 어노테이션 제공
+</p>
+</body>
+</html>

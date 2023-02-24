@@ -1,0 +1,12 @@
+package org.comstudy.myapp.saram.model;
+
+import org.springframework.stereotype.Repository;
+
+// 클래스 선언 및 빈 등록
+@Repository
+public class SaramDAO {
+	arrayList<SaramDTO> selectAll() {
+		System.out.println("selectAll() 호출됨");
+		return null;
+	}
+}
