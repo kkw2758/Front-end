@@ -1,0 +1,19 @@
+<%@page import="org.comstudy.myapp.saram.model.SaramDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<%
+SaramDTO dto = new SaramDTO();
+dto.setName("임세현");
+out.println(dto);
+
+%>
+</body>
+</html>

@@ -1,0 +1,18 @@
+package org.comstudy.myweb.model;
+
+public class SaramDTO {
+	int seq;
+	String id;
+	String name;
+	int age;
+	
+	public SaramDTO() {
+		// 디폴트 생성자 - 매개변수가 없는 생성자
+		// 생성자 오버로딩 된 상황에서는 개발자가 직접 만든다.
+		// 생성자가 하나도 없다면 컴파일러가 컴파일 하기 위해 자동으로 생성 한다.
+	}
+	public SaramDTO(int seq, String id, String name, int age) {
+		// 생성자 오버로딩 : 매개변수가 있는 생성자.
+	}
+
+}

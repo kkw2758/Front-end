@@ -1,0 +1,9 @@
+package org.comstudy.myapp.saram.model;
+
+public class SaramDTO {
+	private int idx;
+	private String id;
+	private String name;
+	private int age;
+	
+}

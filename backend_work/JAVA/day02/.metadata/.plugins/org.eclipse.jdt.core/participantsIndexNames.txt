@@ -1,0 +1,23 @@
+INDEX VERSION 1.131
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\262877673.index
+\jsp_suvlet_ex02\src
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\890908686.index
+\spring_day01\src\main\java
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2166633994.index
+\jsp_suvlet_ex01\src
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\817679541.index
+\spring_day01_dy\src
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1489382827.index
+\jsp_suvlet_ex02\src
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1059303701.index
+\spring_day01\src\main\java
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\809048633.index
+\spring_day01\src\main\java
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2202921763.index
+\spring_day01_dy\src
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3271635319.index
+\jsp_suvlet_ex03\src
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1500762294.index
+\jsp_suvlet_ex03\src
+C:\Users\user\workspace2022STS3_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3174140232.index
+\spring_day01\src\main\java

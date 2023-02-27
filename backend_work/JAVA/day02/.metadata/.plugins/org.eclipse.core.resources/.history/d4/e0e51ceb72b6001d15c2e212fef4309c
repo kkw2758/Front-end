@@ -1,0 +1,5 @@
+package org.comstudy.myweb.model;
+
+public class SaramDTO {
+
+}

@@ -1,0 +1,7 @@
+package org.comstudy.myweb;
+
+import HttpServelet;
+
+public class SaramController extends HttpServelet {
+
+}

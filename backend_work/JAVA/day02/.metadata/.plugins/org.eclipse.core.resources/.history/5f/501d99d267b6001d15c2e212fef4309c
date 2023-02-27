@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <h1>길동이의 홈페이지</h1>
+  <h3>사람 목록 페이지</h3>
+  <!-- HTML 주석 : JSP에서 사용 가능한 표현식. expression, EL, JSTL 등. -->
+  <p>안녕하세요. ${username}님.</p>
+  <!--
+  JSP에서 기본 제공 되는 내장 객체:
+  pageContext, request, response, session, application
+  선언 하지 않고 바로 사용 가능하다.-->
+  <p>안녕하세요. <%=request.getAttribute("") %></p>
+</body>
+</html>
