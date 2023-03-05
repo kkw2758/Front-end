@@ -3,12 +3,12 @@ package org.comstudy.myweb.board.model;
 import java.util.Date;
 
 public class BoardDTO {
-	private Long seq;
+	private Integer seq;
 	private String title;
 	private String content;
 	private Date writeDate = new Date();
 	private String writer;
-	private Long cnt;
+	private Integer cnt;
 
 	
 	public BoardDTO() {
@@ -17,7 +17,7 @@ public class BoardDTO {
 		// 생성자가 하나도 없다면 컴파일러가 컴파일 하기 위해 자동으로 생성 한다.
 	}
 	
-	public BoardDTO(Long seq, String title, String content, Date writeDate, String writer, Long cnt) {
+	public BoardDTO(Integer seq, String title, String content, Date writeDate, String writer, Integer cnt) {
 		this.seq = seq;
 		this.title = title;
 		this.content = content;
@@ -26,11 +26,11 @@ public class BoardDTO {
 		this.cnt = cnt;
 	}
 
-	public Long getSeq() {
+	public Integer getSeq() {
 		return seq;
 	}
 
-	public void setSeq(Long seq) {
+	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
 
@@ -66,11 +66,11 @@ public class BoardDTO {
 		this.writer = writer;
 	}
 
-	public Long getCnt() {
+	public Integer getCnt() {
 		return cnt;
 	}
 
-	public void setCnt(Long cnt) {
+	public void setCnt(Integer cnt) {
 		this.cnt = cnt;
 	}
 

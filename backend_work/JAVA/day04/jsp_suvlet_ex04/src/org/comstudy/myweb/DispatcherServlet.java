@@ -38,6 +38,8 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("doGet() - DispatcherServlet 요청");
+		// 하위 컨트롤러에서 GET요청인지 POST요청인지 알 수 있도록 넘겨준다.
+		req.setAttribute("method", "GET");
 		
 		String path = encodingWork(req, resp);
 
@@ -56,7 +58,7 @@ public class DispatcherServlet extends HttpServlet {
 			controller = boardController;
 		}
 
-		String viewName = controller.process(req, resp);
+		String viewName = controller.getProcess(req, resp);
 
 		RequestDispatcher view = req.getRequestDispatcher(viewName);
 		view.forward(req, resp);
@@ -66,22 +68,16 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String path = encodingWork(req, resp);
-		int seq = Integer.parseInt(req.getParameter("seq") == null ? "0" : req.getParameter("seq"));
-		String id = req.getParameter("id");
-		String name = req.getParameter("name");
-		int age = Integer.parseInt(req.getParameter("age") == null ? "0" : req.getParameter("age"));
+		// 하위 컨트롤러에서 GET요청인지 POST요청인지 알 수 있도록 넘겨준다.
+		req.setAttribute("method", "POST");
+		
+		Controller controller = new BoardController(); // 업캐스팅
 
-		SaramDTO dto = new SaramDTO(seq, id, name, age);
-		if ("/saram/input.do".indexOf(path) != -1) {
-			System.out.println("저장");
-			saramDAO.save(dto);
-//			resp.sendRedirect("./saram/list.do");
-		} else if("/saram/modify.do".indexOf(path) != -1) {
-			// 수정 처리
-			System.out.println("수정");
-			System.out.println(dto);
-			saramDAO.update(dto);
+		if (path.indexOf("/saram") != -1) {
+			controller = saramController;
+		} else if (path.indexOf("/board") != -1) {
+			controller = boardController;
 		}
-		resp.sendRedirect(req.getContextPath() + "/saram/list.do");
+		controller.postProcess(req, resp);
 	}
 }

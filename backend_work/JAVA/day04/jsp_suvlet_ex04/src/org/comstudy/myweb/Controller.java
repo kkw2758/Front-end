@@ -10,6 +10,7 @@ public interface Controller {
 	// 인터페이스를 상속받는 클래스는 인터페이스의 모든 추상 메소드를 구현 해야한다.
 	// 이 인터페이스를 구현하는 클래스는 반드시 process를 구현해야 한다.
 	// 추상 메서드는 body가 없다 -> {}가 없다.
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
+	public String getProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
+	public void postProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 
 }

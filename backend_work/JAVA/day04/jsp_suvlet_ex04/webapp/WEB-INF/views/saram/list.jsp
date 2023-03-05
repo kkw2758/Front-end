@@ -40,6 +40,6 @@ for(SaramDTO saram : list) {
 <%
 }
 %>
-<p><a href="input.do">사람등록</a></p>
+<p><a href="input.do">사람 등록</a></p>
 </body>
 </html>

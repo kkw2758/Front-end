@@ -13,7 +13,7 @@ import org.comstudy.myweb.dbcp.JdbcUtil;
 public class SaramDAO {
 	// Database에 CRUD를 전담하는 클래스
 	// 커넥션 DB에 접속할때 필요한 객체
-	Connection conn = null; // DB 연결 영도
+	Connection conn = null; // DB 연결 용도
 	// 변수처리를 ? 로 하도록 도와준다 - PreparedStatement
 	PreparedStatement stmt = null; // DB에 SQL 전달
 	ResultSet rs = null; // 결과를 받아 올때 사용.

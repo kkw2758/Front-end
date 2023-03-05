@@ -12,6 +12,7 @@
 <body>
 
 <%
+// 참고 : https://tomcat.apache.org/tomcat-9.0-doc/jndi-resources-howto.html
 SaramDAO saramDao = new SaramDAO();
 List<SaramDTO> list = saramDao.findAll();
 out.println(list);
