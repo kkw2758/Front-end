@@ -9,7 +9,6 @@
 <body>
 <h2>게시물 정보 입력</h2>
 <form action="input.do" method="post">
-	<input type="hidden" name="seq" /><br/>
 	title: <input name="title" /><br/>
 	content: <input name="content"  /><br/>
 	writeDate: <input type="date" name="writeDate"  /><br/>

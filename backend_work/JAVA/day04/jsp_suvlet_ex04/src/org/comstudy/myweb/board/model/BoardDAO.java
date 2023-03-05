@@ -25,7 +25,7 @@ public class BoardDAO {
 	// JAVA에서 final로 선언한 값은 수정 불가
 	final String FIND_ALL = "SELECT * FROM BOARD";
 	final String FIND_ONE = "SELECT * FROM BOARD WHERE SEQ=?"; // SEQ로 특정 정보 조회 쿼리
-	final String SAVE = "insert into BOARD(seq, title, content, writeDate, writer, cnt) values(?,?,?,?,?,?)";
+	final String SAVE = "insert into BOARD(title, content, writeDate, writer, cnt) values(?,?,?,?,?)";
 	final String UPDATE = "UPDATE BOARD SET title=?, content=?, writeDate=?, writer=?, cnt=? WHERE SEQ=?";
 	final String DELETE = "DELETE FROM board WHERE SEQ=?";
 	
@@ -84,12 +84,13 @@ public class BoardDAO {
 		try {
 			conn = JdbcUtil.getConnection();
 			stmt = conn.prepareStatement(SAVE);
-			stmt.setLong(1, dto.getSeq());
-			stmt.setString(2, dto.getTitle());
-			stmt.setString(3, dto.getContent());
-			stmt.setDate(4, (java.sql.Date) dto.getWriteDate());	
-			stmt.setString(5, dto.getWriter());
-			stmt.setLong(6, dto.getCnt());
+			stmt.setString(1, dto.getTitle());
+			stmt.setString(2, dto.getContent());
+//			stmt.setDate(3, (java.sql.Date) dto.getWriteDate());	
+			java.sql.Date sqlDate = new java.sql.Date(dto.getWriteDate().getTime());
+			stmt.setDate(3, sqlDate);
+			stmt.setString(4, dto.getWriter());
+			stmt.setLong(5, dto.getCnt());
 			int cnt = stmt.executeUpdate();
 			if (cnt > 0) {
 				System.out.println("입력 성공");
@@ -110,16 +111,16 @@ public class BoardDAO {
 	public void update(BoardDTO dto) {
 		try {
 			conn = JdbcUtil.getConnection();
-			stmt = conn.prepareStatement(SAVE);
-			stmt.setLong(1, dto.getSeq());
-			stmt.setString(2, dto.getTitle());
-			stmt.setString(3, dto.getContent());
-			
+			stmt = conn.prepareStatement(UPDATE);
+			stmt.setString(1, dto.getTitle());
+			stmt.setString(2, dto.getContent());
 			java.sql.Date sqlDate = new java.sql.Date(dto.getWriteDate().getTime());
-			stmt.setDate(4, sqlDate);
-			stmt.setString(5, dto.getWriter());
-			stmt.setLong(6, dto.getCnt());
+			stmt.setDate(3, sqlDate);
+			stmt.setString(4, dto.getWriter());
+			stmt.setLong(5, dto.getCnt());
+			stmt.setLong(6, dto.getSeq());
 			int cnt = stmt.executeUpdate();
+			
 			if(cnt>0) {
 				System.out.println("수정 성공!");
 				conn.commit();

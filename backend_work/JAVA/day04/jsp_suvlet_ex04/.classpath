@@ -12,6 +12,6 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/h2/bin/h2-2.1.214.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/H2/bin/h2-2.1.214.jar"/>
 	<classpathentry kind="output" path="build/class"/>
 </classpath>

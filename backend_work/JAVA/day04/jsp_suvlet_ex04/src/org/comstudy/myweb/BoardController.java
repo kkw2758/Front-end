@@ -66,13 +66,14 @@ public class BoardController implements Controller {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println(writeDate);
 		String writer = req.getParameter("writer");
 		Integer cnt = Integer.parseInt(req.getParameter("cnt") == null ? "0" : req.getParameter("cnt"));
 		BoardDTO dto = new BoardDTO(seq, title, content, writeDate, writer, cnt);
 		
 		if ("/board/input.do".indexOf(path) != -1) {
 			System.out.println("저장");
+			System.out.println(dto);
 			boardDAO.save(dto);
 		} else if("/board/modify.do".indexOf(path) != -1) {
 			// 수정 처리
