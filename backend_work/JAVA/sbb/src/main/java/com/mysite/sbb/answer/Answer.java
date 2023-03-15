@@ -3,6 +3,7 @@ package com.mysite.sbb.answer;
 import java.time.LocalDateTime;
 
 import com.mysite.sbb.question.Question;
+import com.mysite.sbb.user.SiteUser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,4 +29,9 @@ public class Answer {
 	
 	@ManyToOne
 	private Question question;
+	
+	@ManyToOne // 마찬가지로 여러개의 답변이 한명의 사용자에게 작성딜 수 있다.
+	private SiteUser author;
+	
+	private LocalDateTime modifyDate;
 }

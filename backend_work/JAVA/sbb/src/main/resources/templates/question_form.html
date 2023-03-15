@@ -1,8 +1,9 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container">
 	<h5 class="my-3 border-bottom pb-2">질문등록</h5>
-	<form th:action="@{/question/create}" th:object="${questionForm}"
-		method="post">
+	<form th:object="${questionForm}" method="POST">
+		<!-- 폼태그의 th:action 속성을 삭제하면 CSRF값이 자동으로 생성되지 않기 때문에 CSRF값을 설정하기위한 input 엘리먼트를 수동으로 추가한다. -->
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 		<!-- div 엘리먼트를 form_errors.html 파일의 th:fragment 속성명이 formErrorsFragment인 엘리먼트로 교체하라 라는 의미 -->
 		<div th:replace="~{form_errors :: formErrorsFragment}"></div>
 		<div class="mb-3">
